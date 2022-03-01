@@ -54,10 +54,10 @@ http://localhost:8002/shoppingById/12 //Get partical id from the database
 http://localhost:8002/shopping/Laptop  //Get records by name 
 ```
 
-### Create a product resource
+### Create a shopping resource
 
 ```
-POST http://localhost:8002/addShopping  //Created only single product
+POST http://localhost:8002/addShopping  //Created only single shopping
 Accept: application/json
 Content-Type: application/json
 
@@ -68,7 +68,7 @@ Content-Type: application/json
 }
 
 
-POST http://localhost:8002/addShoppings  //Created Multiple products
+POST http://localhost:8002/addShoppings  //Created Multiple shopping
 Accept: application/json
 Content-Type: application/json
 
