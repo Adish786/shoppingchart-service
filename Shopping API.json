@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1b47f743-d8b3-48e7-8098-2d60df54f9cc",
+		"_postman_id": "21dbab26-46e4-4b78-8a8f-b2fb1f42d592",
 		"name": "Shopping API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9894690"
 	},
 	"item": [
 		{
@@ -127,7 +128,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 12,\r\n    \"shoppingname\": \"Mobile-Charger\",\r\n    \"shoppingtype\": \"Online\",\r\n    \"totalshopping\": 20\r\n}",
+					"raw": "{\r\n    \r\n    \"shoppingname\": \"Mobile-Charger\",\r\n    \"shoppingtype\": \"Online\",\r\n    \"totalshopping\": 20\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -135,14 +136,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8002/update",
+					"raw": "http://localhost:8002/update/12",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8002",
 					"path": [
-						"update"
+						"update",
+						"12"
 					]
 				}
 			},

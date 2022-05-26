@@ -1,7 +1,11 @@
 package com.common.retail.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import com.common.retail.model.Shopping;
+import com.common.retail.repository.ShoppingRepo;
 import com.common.retail.service.ShoppingService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
@@ -25,6 +29,9 @@ public class ShoppingController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private ShoppingRepo shoppingRepo;
 
     @PostMapping("/addShopping")
     public Shopping addShopping(@RequestBody Shopping shopping) {
@@ -63,15 +70,29 @@ public class ShoppingController {
     public Shopping findShoppingname(@PathVariable String name) {
         return service.getShoppingname(name);
     }
-
+/*
     @PutMapping("/update")
     public Shopping updateShopping(@RequestBody Shopping shopping) {
         return service.updateShopping(shopping);
     }
-
+*/
     @DeleteMapping("/delete/{id}")
     public String deleteShopping(@PathVariable int id) {
         return service.deleteShopping(id);
     }
-
+    @PutMapping("update/{id}")
+    public ResponseEntity<Shopping> update(@PathVariable("id") int id, @RequestBody Shopping shopping) {
+        Optional<Shopping> optionalProject = shoppingRepo.findById(id);
+        if (optionalProject.isPresent()) {
+        	Shopping p = optionalProject.get();
+            if (shopping.getShoppingname() != null)
+                p.setShoppingname(shopping.getShoppingname());
+            if (shopping.getShoppingtype() !=null)
+                p.setShoppingtype(shopping.getShoppingtype());
+            if (shopping.getTotalshopping() != 0)
+                p.setTotalshopping(shopping.getTotalshopping());
+            return new ResponseEntity<>(shoppingRepo.save(p), HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

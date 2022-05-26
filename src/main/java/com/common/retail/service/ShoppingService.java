@@ -48,6 +48,7 @@ public class ShoppingService {
         return repository.save(existingShopping);
     }
 */
+   /*
     public Shopping updateShopping(Shopping shopping) {
     	Shopping outShopping = null;
 
@@ -82,6 +83,6 @@ public class ShoppingService {
         return outShopping;
     }
     
-    
+    */
 
 }
